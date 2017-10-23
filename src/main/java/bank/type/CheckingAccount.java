@@ -2,6 +2,7 @@ package bank.type;
 
 import framework.AccountTypeState;
 
-public class CompanyType extends AccountTypeState {
+public class CheckingAccount extends AccountTypeState {
+
 
 }

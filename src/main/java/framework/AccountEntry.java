@@ -2,7 +2,7 @@ package framework;
 
 import java.util.Date;
 
-public abstract class AccountEntry {
+public class AccountEntry {
 	private Date date;
 	private double amount;
 	private String description;
