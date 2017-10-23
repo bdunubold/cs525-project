@@ -2,6 +2,16 @@ package framework;
 
 import java.util.Collection;
 
+<<<<<<< HEAD
+public interface AccountService {
+    Account createAccount(String accountNumber, String customerName);
+    Account getAccount(String accountNumber);
+    Collection<Account> getAllAccounts();
+    Address createAddress(String street, String city, String state, String zip);
+    void deposit (String accountNumber, double amount);
+    void withdraw (String accountNumber, double amount);
+    void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description);
+=======
 public abstract class AccountService {
 
 	protected AccountDAO accountDAO;
@@ -30,4 +40,5 @@ public abstract class AccountService {
 	public abstract void withdraw(String accountNumber, double amount);
 
 	public abstract void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description);
+>>>>>>> 62a3a708114b99f7db3d9af8fb1b33c56dff6932
 }

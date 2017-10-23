@@ -2,14 +2,13 @@ package framework;
 
 import java.util.Collection;
 
-public abstract class AccountServiceImpl implements AccountService {
-	private AccountDAO accountDAO;
+public abstract class AccountServiceImpl extends AccountService {
 	
-	public AccountServiceImpl(){
-//		accountDAO = new AccountDAOImpl();
-		// create concrete DAO which implements from AccountDAOImpl here
+	
+	public AccountServiceImpl(AccountDAO accountDAO) {
+		super(accountDAO);
+		// TODO Auto-generated constructor stub
 	}
-
 	/**
 	 * we need to override in each service
 	 */
