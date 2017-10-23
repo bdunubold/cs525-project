@@ -1,7 +1,7 @@
 package ccard.type;
 
-import ccard.AccountTypeState;
+import framework.AccountTypeState;
 
-public class GoldType implements AccountTypeState {
+public class GoldType extends AccountTypeState {
 
 }

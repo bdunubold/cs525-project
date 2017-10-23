@@ -1,7 +1,7 @@
 package ccard.type;
 
-import ccard.AccountTypeState;
+import framework.AccountTypeState;
 
-public class BronzeType implements AccountTypeState {
+public class BronzeType extends AccountTypeState {
 
 }

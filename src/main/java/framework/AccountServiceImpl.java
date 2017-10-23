@@ -6,7 +6,8 @@ public abstract class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
 	
 	public AccountServiceImpl(){
-		accountDAO = new AccountDAOImpl();
+//		accountDAO = new AccountDAOImpl();
+		// create concrete DAO which implements from AccountDAOImpl here
 	}
 
 	/**

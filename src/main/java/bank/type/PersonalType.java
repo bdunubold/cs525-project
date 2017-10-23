@@ -1,7 +1,7 @@
 package bank.type;
 
-import ccard.AccountTypeState;
+import framework.AccountTypeState;
 
-public class PersonalType implements AccountTypeState {
+public class PersonalType extends AccountTypeState {
 
 }
