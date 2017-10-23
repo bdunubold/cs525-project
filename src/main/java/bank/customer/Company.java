@@ -7,7 +7,7 @@ import framework.Customer;
 import java.util.List;
 
 public class Company extends Customer {
-	public Company(List<Account> accounts, String name, Address address) {
-		super(accounts, name, address);
+	public Company(List<Account> accounts, String name, String email, Address address) {
+		super(accounts, name, email, address);
 	}
 }
