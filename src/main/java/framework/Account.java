@@ -6,13 +6,26 @@ import java.util.List;
 
 public class Account {
 	private Customer customer;
-	private AccountTypeState accountType;
+	private AccountType accountType;
+	private Card card;
 
-	public AccountTypeState getAccountType() {
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
+	public void setEntryList(List<AccountEntry> entryList) {
+		this.entryList = entryList;
+	}
+
+	public AccountType getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(AccountTypeState accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 

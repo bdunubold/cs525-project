@@ -1,8 +1,8 @@
 package bank.type;
 
-import framework.AccountTypeState;
+import framework.AccountType;
 
-public class SavingAccount extends AccountTypeState {
+public class SavingAccount extends AccountType {
 
 
 }
