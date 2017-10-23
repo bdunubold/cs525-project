@@ -1,13 +1,24 @@
 package bank.customer;
 
-import framework.Account;
 import framework.Address;
 import framework.Customer;
 
-import java.util.List;
-
 public class Company extends Customer {
-	public Company(List<Account> accounts, String name, String email, Address address) {
-		super(accounts, name, email, address);
+	
+	private int numOfEmployees;
+	
+	public Company(String name, String email, int numOfEmployees, Address address) {
+		super(name, email, address);
+		this.numOfEmployees = numOfEmployees;
 	}
+
+	public int getNumOfEmployees() {
+		return numOfEmployees;
+	}
+
+	public void setNumOfEmployees(int numOfEmployees) {
+		this.numOfEmployees = numOfEmployees;
+	}
+	
+	
 }

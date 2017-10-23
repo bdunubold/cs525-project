@@ -46,6 +46,9 @@ public abstract class AccountServiceImpl implements AccountService {
 		accountDAO.updateAccount(account);
 	}
 
+	public Address createAddress(String street, String city, String state, String zip) {
+		return new Address(street, city, state, zip);
+	}
 
 
 	public void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description) {

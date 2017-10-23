@@ -6,6 +6,7 @@ public interface AccountService {
     Account createAccount(String accountNumber, String customerName);
     Account getAccount(String accountNumber);
     Collection<Account> getAllAccounts();
+    Address createAddress(String street, String city, String state, String zip);
     void deposit (String accountNumber, double amount);
     void withdraw (String accountNumber, double amount);
     void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description);

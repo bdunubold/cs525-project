@@ -17,8 +17,7 @@ public class Customer {
 
 	private Address address;
 
-	public Customer(List<Account> accounts, String name, String email, Address address) {
-		this.accounts = accounts;
+	public Customer(String name, String email, Address address) {
 		this.name = name;
 		this.email = email;
 		this.address = address;
