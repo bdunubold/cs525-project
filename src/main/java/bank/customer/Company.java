@@ -1,12 +1,12 @@
 package bank.customer;
 
+import framework.Account;
 import framework.Customer;
 
+import java.util.List;
+
 public class Company extends Customer {
-
-	public Company(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
+	public Company(List<Account> accounts, String name, String street, String city, String state, String zip, String email) {
+		super(accounts, name, street, city, state, zip, email);
 	}
-
 }

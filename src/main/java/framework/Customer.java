@@ -16,10 +16,15 @@ public class Customer {
 	public void addAccount(Account account) {
 		accounts.add(account);
 	}
-	
 
-	public Customer(String name) {
+	public Customer(List<Account> accounts, String name, String street, String city, String state, String zip, String email) {
+		this.accounts = accounts;
 		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.email = email;
 	}
 
 	public String getName() {
