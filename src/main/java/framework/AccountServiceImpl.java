@@ -2,22 +2,26 @@ package framework;
 
 import java.util.Collection;
 
-public class AccountServiceImpl implements AccountService {
+public abstract class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
 	
 	public AccountServiceImpl(){
 		accountDAO = new AccountDAOImpl();
 	}
 
-	public Account createAccount(String accountNumber, String customerName) {
-		Account account = new Account(accountNumber);
-		Customer customer = new Customer(customerName);
-		account.setCustomer(customer);
-		
-		accountDAO.saveAccount(account);
-		
-		return account;
-	}
+	/**
+	 * we need to override in each service
+	 */
+	public abstract Account createAccount(String accountNumber, String customerName); 
+//	{
+//		Account account = new Account(accountNumber);
+//		Customer customer = new Customer(customerName);
+//		account.setCustomer(customer);
+//		
+//		accountDAO.saveAccount(account);
+//		
+//		return account;
+//	}
 
 	public void deposit(String accountNumber, double amount) {
 		Account account = accountDAO.loadAccount(accountNumber);

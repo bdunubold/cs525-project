@@ -1,6 +1,6 @@
 package framework;
 
-public class Customer {
+public abstract class Customer {
 	private String name;
 
 	public Customer(String name) {

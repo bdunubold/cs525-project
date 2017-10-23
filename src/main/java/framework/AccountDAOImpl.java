@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class AccountDAOImpl implements AccountDAO {
+
 	Collection<Account> accountlist = new ArrayList<Account>();
 
 	public void saveAccount(Account account) {
@@ -31,5 +32,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public Collection<Account> getAccounts() {
 		return accountlist;
 	}
+
 
 }
