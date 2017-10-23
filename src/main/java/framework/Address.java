@@ -6,23 +6,13 @@ public class Address {
 	private String city;
 	private String state;
 	private String zip;
-	private String email;
 
-	public Address(String street, String city, String state, String zip, String email) {
+	public Address(String street, String city, String state, String zip) {
 		super();
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.email = email;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getStreet() {

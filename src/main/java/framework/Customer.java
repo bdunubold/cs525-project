@@ -7,6 +7,7 @@ public class Customer {
 
 	List<Account> accounts = new ArrayList<Account>();
 	private String name;
+	private String email;
 
 	public void addAccount(Account account) {
 		accounts.add(account);
@@ -16,9 +17,10 @@ public class Customer {
 
 	private Address address;
 
-	public Customer(List<Account> accounts, String name, Address address) {
+	public Customer(List<Account> accounts, String name, String email, Address address) {
 		this.accounts = accounts;
 		this.name = name;
+		this.email = email;
 		this.address = address;
 	}
 
@@ -44,6 +46,14 @@ public class Customer {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
