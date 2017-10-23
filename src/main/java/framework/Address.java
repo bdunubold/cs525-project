@@ -8,6 +8,15 @@ public class Address {
 	private String zip;
 	private String email;
 
+	public Address(String street, String city, String state, String zip, String email) {
+		super();
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.email = email;
+	}
+
 	public String getEmail() {
 		return email;
 	}
