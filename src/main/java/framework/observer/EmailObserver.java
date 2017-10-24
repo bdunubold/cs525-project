@@ -1,11 +1,14 @@
 package framework.observer;
 
+import framework.Customer;
+
 public class EmailObserver implements Observer {
 
 	@Override
 	public void update(Object object) {
-		// TODO Auto-generated method stub
 
+		Customer customer = (Customer) object;
+		System.out.println("Sending email to customer : " + customer.getEmail());
 	}
 
 }
