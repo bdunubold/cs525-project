@@ -1,9 +1,8 @@
 package bank;
 
-import framework.Account;
-import framework.AccountDAO;
-import framework.AccountService;
-import framework.DataMap;
+import framework.*;
+import java.util.UUID;
+import java.util.Collection;
 
 public class BankServiceImpl extends AccountService {
 
@@ -13,10 +12,17 @@ public class BankServiceImpl extends AccountService {
 	}
 
 	@Override
-	public Account createAccount(DataMap params) {
+	public Account createAccount(DataMap data) {
+        Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
+        Account account = new Account(UUID.randomUUID().toString().replace("-", ""));
+        account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
+        BankDAOImpl.getInstance().saveAccount(account);
+        return account;
+	}
+
+	@Override
+	public String generateReport() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 }
