@@ -37,8 +37,8 @@ public class BankFrm extends JFrame{
 
     public BankFrm() {
         myframe = this;
-        // initial accountService variable
-        accountService = new BankServiceImpl();
+        // TODO initial accountService variable
+//        accountService = new BankServiceImpl();
 
         setTitle("Bank Application.");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
