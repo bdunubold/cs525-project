@@ -1,7 +1,6 @@
 package credit.type;
 
 import credit.Visitor;
-import framework.AccountType;
 
 public class Bronze implements CreditAccountType {
 
@@ -10,7 +9,7 @@ public class Bronze implements CreditAccountType {
 	}
 
 	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
+	public double accept(Visitor visitor, double amount) {
+		return visitor.visit(this, amount);
 	}
 }

@@ -10,7 +10,7 @@ import framework.observer.Observer;
 public abstract class AccountService implements Observable {
 
 	private List<Observer> observers = new ArrayList<>();
-	private AccountDAO accountDAO;
+	protected AccountDAO accountDAO;
 
 	public AccountService(AccountDAO accountDAO) {
 		this.accountDAO = accountDAO;

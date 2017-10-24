@@ -8,21 +8,21 @@ import credit.type.Silver;
 public class MonthlyInterestVisitor implements Visitor {
 
 	@Override
-	public void visit(Gold accounType) {
+	public double visit(Gold gold, double amount) {
 		// TODO Auto-generated method stub
-
+		return amount * 0.06;
 	}
 
 	@Override
-	public void visit(Silver accounType) {
+	public double visit(Silver silverType, double amount) {
 		// TODO Auto-generated method stub
-
+		return amount * 0.08;
 	}
 
 	@Override
-	public void visit(Bronze accounType) {
+	public double visit(Bronze bronzeType, double amount) {
 		// TODO Auto-generated method stub
-
+		return amount * 0.1;
 	}
 
 }
