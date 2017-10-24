@@ -1,8 +1,11 @@
 package ccard.type;
 
+import ccard.interest.CreditIntrestVisitor;
+import framework.InterestStrategy;
+
 public interface CreditType {
 	
-	public double getMininumPayment();
-	public double monthlyInterest();
-
+	public double accept(CreditIntrestVisitor visitor, double amount);
+	
+	
 }

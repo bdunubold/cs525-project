@@ -5,9 +5,22 @@ import java.util.Collection;
 import java.util.List;
 
 public class Account {
+
 	private Customer customer;
 	private AccountType accountType;
 	private Card card;
+	private String accountNumber;
+	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
+
+	private InterestStrategy interestStrategy;
+
+	public InterestStrategy getInterestStrategy() {
+		return interestStrategy;
+	}
+
+	public void setInterestStrategy(InterestStrategy interestStrategy) {
+		this.interestStrategy = interestStrategy;
+	}
 
 	public Card getCard() {
 		return card;
@@ -28,10 +41,6 @@ public class Account {
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
-
-	private String accountNumber;
-
-	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
 
 	public Account(String accountNumber) {
 		this.accountNumber = accountNumber;
@@ -78,6 +87,13 @@ public class Account {
 		toAccount.addEntry(toEntry);
 	}
 
+	public void addInterest() {
+
+		double interest = interestStrategy.calcInterest(getBalance());
+		AccountEntry entry = new AccountEntry(interest, "interest", "", "");
+		entryList.add(entry);
+	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -89,4 +105,16 @@ public class Account {
 	public Collection<AccountEntry> getEntryList() {
 		return entryList;
 	}
+
+	public List<AccountEntry> getReport(int month, int year) {
+
+		List<AccountEntry> list = new ArrayList<>();
+		for (AccountEntry entry : entryList) {
+			if (entry.getDate().getMonthValue() == month && entry.getDate().getYear() == year)
+				list.add(entry);
+		}
+
+		return list;
+	}
+
 }

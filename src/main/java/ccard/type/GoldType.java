@@ -1,17 +1,13 @@
 package ccard.type;
 
+import ccard.interest.CreditIntrestVisitor;
+
 public class GoldType implements CreditType {
 
 	@Override
-	public double getMininumPayment() {
+	public double accept(CreditIntrestVisitor visitor, double amount) {
 		// TODO Auto-generated method stub
-		return 0.1;
-	}
-
-	@Override
-	public double monthlyInterest() {
-		// TODO Auto-generated method stub
-		return 0.06;
+		return visitor.visit(this, amount);
 	}
 
 }
