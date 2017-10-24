@@ -3,8 +3,9 @@ package ccard;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
+import ccard.interest.MinimumInterest;
+import ccard.interest.MonthlyInterest;
 import ccard.type.CreditAccount;
 import ccard.type.SilverType;
 import framework.Account;
@@ -14,6 +15,7 @@ import framework.AccountService;
 import framework.Address;
 import framework.Card;
 import framework.Customer;
+import framework.InterestStrategy;
 
 public class CCardAccountService extends AccountService {
 
@@ -34,8 +36,7 @@ public class CCardAccountService extends AccountService {
 		account.setAccountType(creditAccount);
 		Card card = new Card();
 		card.setActive(true);
-		
-		
+
 		card.setCardNumber("100000");
 
 		card.setExpDate(LocalDate.of(LocalDate.now().getYear() + 2, LocalDate.now().getMonth(),
@@ -69,6 +70,18 @@ public class CCardAccountService extends AccountService {
 		accountDAO.updateAccount(account);
 	}
 
+	public double getMininumPayment(String accountNumber) {
+
+		Account account = accountDAO.loadAccount(accountNumber);
+
+		CreditAccount credit = (CreditAccount) account.getAccountType();
+
+		InterestStrategy interest = new MinimumInterest(credit.getCreditType());
+		account.setInterestStrategy(interest);
+
+		return account.getInterestStrategy().calcInterest(account.getBalance());
+	}
+
 	// charge account
 	@Override
 	public void withdraw(String accountNumber, double amount) {
@@ -81,6 +94,12 @@ public class CCardAccountService extends AccountService {
 	public void addInterest(String accountNumber) {
 
 		Account account = accountDAO.loadAccount(accountNumber);
+
+		CreditAccount credit = (CreditAccount) account.getAccountType();
+
+		InterestStrategy interest = new MonthlyInterest(credit.getCreditType());
+		account.setInterestStrategy(interest);
+
 		account.addInterest();
 		accountDAO.updateAccount(account);
 	}
