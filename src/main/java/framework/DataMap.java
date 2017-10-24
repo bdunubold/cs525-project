@@ -6,7 +6,16 @@ public class DataMap {
 	private AccounTypeEnum accounType;
     private String accountNumber;
     private String name;
-    private String street;
+    private String customerType;
+    public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	private String street;
     private String city;
     private String state;
     private String zip;

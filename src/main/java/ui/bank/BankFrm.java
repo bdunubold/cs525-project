@@ -1,11 +1,7 @@
 package ui.bank;
 
-import bank.command.CompanyAccountCreationCommand;
-import bank.command.PersonalAccountCreationCommand;
-import bank.customer.Company;
 import bank.customer.Individual;
 import bank.interest.CheckingInterest;
-import bank.interest.SavingInterest;
 import bank.type.CheckingAccount;
 import bank.type.SavingAccount;
 import framework.Account;
