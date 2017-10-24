@@ -1,6 +1,8 @@
 package framework;
 
-public interface AccountService {
+import framework.observer.Observable;
+
+public interface AccountService extends Observable {
 
 	public Account createAccount(DataMap params);
 

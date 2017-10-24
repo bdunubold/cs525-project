@@ -1,10 +1,15 @@
 package framework;
 
 import java.util.Collection;
+import java.util.List;
+
+import framework.observer.Observer;
+
 import java.util.ArrayList;
 
 public class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
+	private List<Observer> observers = new ArrayList<Observer>();
 
 	public AccountServiceImpl() {
 		accountDAO = new AccountDAOImpl();
@@ -64,6 +69,28 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void generateReport() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	// TODO 
+	/**
+	 * update this whatever you change.
+	 */
+	@Override
+	public void notifyAllObservers(Object object) {
+		for(Observer observer: observers) {
+			observer.update(object);
+		}
+	}
+
+	@Override
+	public void addObserver(Observer observer) {
+		observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(Observer observer) {
+		observers.remove(observer);
 		
 	}
 }
