@@ -6,15 +6,15 @@ import java.util.List;
 public class CommandInvoker{
     private static List<Command> commandHistory = new ArrayList<>(21);
     private static int numberOfCommands = 20;
-    private Command currentCommand;
+//    private Command currentCommand;
 
 //    private CommandInvoker(){}
 
-    public void setCommand(Command command) {
-        currentCommand = command;
-    }
+//    public void setCommand(Command command) {
+//        currentCommand = command;
+//    }
 
-    private void addHistory() {
+    private void addHistory(Command currentCommand) {
         if (currentCommand != null) {
             commandHistory.add(0, currentCommand);
 
@@ -24,10 +24,10 @@ public class CommandInvoker{
         }
     }
 
-    public void execute() {
+    public void execute(Command currentCommand) {
         if (currentCommand != null) {
             currentCommand.execute();
-            addHistory();
+            addHistory(currentCommand);
 
             currentCommand = null;
         }
