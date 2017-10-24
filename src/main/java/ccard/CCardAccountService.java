@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import framework.Account;
 import framework.AccountDAO;
+import framework.AccountEntry;
 import framework.AccountService;
 
 public class CCardAccountService extends AccountService {
@@ -33,8 +34,10 @@ public class CCardAccountService extends AccountService {
 
 	@Override
 	public void deposit(String accountNumber, double amount) {
-		// TODO Auto-generated method stub
+		Account account = accountDAO.loadAccount(accountNumber);
+		account.deposit(amount);
 
+		accountDAO.updateAccount(account);
 	}
 
 	@Override

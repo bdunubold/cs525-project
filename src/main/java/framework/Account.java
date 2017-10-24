@@ -5,9 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 public class Account {
+
 	private Customer customer;
 	private AccountType accountType;
 	private Card card;
+	private String accountNumber;
+	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
 
 	public Card getCard() {
 		return card;
@@ -28,10 +31,6 @@ public class Account {
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
-
-	private String accountNumber;
-
-	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
 
 	public Account(String accountNumber) {
 		this.accountNumber = accountNumber;
@@ -89,4 +88,5 @@ public class Account {
 	public Collection<AccountEntry> getEntryList() {
 		return entryList;
 	}
+
 }
