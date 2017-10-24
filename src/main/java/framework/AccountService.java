@@ -19,7 +19,7 @@ public abstract class AccountService {
 		this.accountDAO = accountDAO;
 	}
 
-	public abstract Account createAccount(String accountNumber, String customerName);
+	public abstract Account createAccount(DataMap data);
 
 	public abstract Account getAccount(String accountNumber);
 

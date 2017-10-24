@@ -12,16 +12,7 @@ public abstract class AccountServiceImpl extends AccountService {
 	/**
 	 * we need to override in each service
 	 */
-	public abstract Account createAccount(String accountNumber, String customerName); 
-//	{
-//		Account account = new Account(accountNumber);
-//		Customer customer = new Customer(customerName);
-//		account.setCustomer(customer);
-//		
-//		accountDAO.saveAccount(account);
-//		
-//		return account;
-//	}
+	public abstract Account createAccount(DataMap data);
 
 	public void deposit(String accountNumber, double amount) {
 		Account account = accountDAO.loadAccount(accountNumber);

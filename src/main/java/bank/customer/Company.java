@@ -5,18 +5,18 @@ import framework.Customer;
 
 public class Company extends Customer {
 	
-	private int numOfEmployees;
+	private String numOfEmployees;
 	
-	public Company(String name, String email, int numOfEmployees, Address address) {
+	public Company(String name, String email, String numOfEmployees, Address address) {
 		super(name, email, address);
 		this.numOfEmployees = numOfEmployees;
 	}
 
-	public int getNumOfEmployees() {
+	public String getNumOfEmployees() {
 		return numOfEmployees;
 	}
 
-	public void setNumOfEmployees(int numOfEmployees) {
+	public void setNumOfEmployees(String numOfEmployees) {
 		this.numOfEmployees = numOfEmployees;
 	}
 	

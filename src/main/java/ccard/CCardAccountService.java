@@ -5,6 +5,7 @@ import java.util.Collection;
 import framework.Account;
 import framework.AccountDAO;
 import framework.AccountService;
+import framework.DataMap;
 
 public class CCardAccountService extends AccountService {
 
@@ -14,7 +15,7 @@ public class CCardAccountService extends AccountService {
 	}
 
 	@Override
-	public Account createAccount(String accountNumber, String customerName) {
+	public Account createAccount(DataMap data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
