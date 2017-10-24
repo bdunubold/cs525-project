@@ -1,7 +1,13 @@
 package credit;
 
-import framework.AccountDAOImpl;
+import framework.AccountDAO;
 
-public class CreditDAOImpl extends AccountDAOImpl {
+public class CreditDAOImpl extends AccountDAO {
+
+	private static CreditDAOImpl accountDAO = new CreditDAOImpl();
+
+	public static CreditDAOImpl getInstance() {
+		return accountDAO;
+	}
 
 }

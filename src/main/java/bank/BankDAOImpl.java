@@ -1,7 +1,14 @@
 package bank;
 
-import framework.AccountDAOImpl;
+import framework.AccountDAO;
 
-public class BankDAOImpl extends AccountDAOImpl {
+public class BankDAOImpl extends AccountDAO {
+
+
+	private static BankDAOImpl accountDAO = new BankDAOImpl();
+
+	public static BankDAOImpl getInstance() {
+		return accountDAO;
+	}
 
 }

@@ -5,15 +5,12 @@ import framework.AccountType;
 
 public class Silver implements CreditAccountType {
 
-	private AccountType accounType;
-	
-	public Silver(AccountType accounType) {
-		this.accounType = accounType;
+	public Silver() {
 	}
-	
+
 	@Override
 	public void accept(Visitor visitor) {
-		visitor.visit((Silver) accounType);
+		visitor.visit(this);
 	}
 
 }

@@ -5,14 +5,12 @@ import framework.AccountType;
 
 public class Bronze implements CreditAccountType {
 
-	private AccountType accounType;
+	public Bronze() {
 
-	public Bronze(AccountType accounType) {
-		this.accounType = accounType;
 	}
 
 	@Override
 	public void accept(Visitor visitor) {
-		visitor.visit((Bronze) accounType);
+		visitor.visit(this);
 	}
 }
