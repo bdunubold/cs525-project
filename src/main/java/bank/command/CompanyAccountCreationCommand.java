@@ -3,7 +3,7 @@ package bank.command;
 import framework.Account;
 import framework.AccountService;
 import framework.DataMap;
-import ui.bank.command.Command;
+import framework.command.Command;
 
 public class CompanyAccountCreationCommand implements Command{
 

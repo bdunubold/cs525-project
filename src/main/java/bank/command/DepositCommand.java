@@ -1,7 +1,7 @@
 package bank.command;
 
 import framework.AccountService;
-import ui.bank.command.Command;
+import framework.command.Command;
 
 public class DepositCommand implements Command{
 
