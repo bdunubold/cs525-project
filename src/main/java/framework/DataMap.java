@@ -1,7 +1,10 @@
 package framework;
 
+import java.time.LocalDate;
+
 public class DataMap {
-	private AccounTypeEnum accounType;
+	private AccounTypeEnum accounTypeEnum;
+	private AccountType accounType;
     private String accountNumber;
     private String name;
     private String customerType;
@@ -28,7 +31,7 @@ public class DataMap {
 	public DataMap(AccounTypeEnum accounType, String accountNumber,
                    String name, String street, String city, String state,
                    String zip, String email, Integer numOfEmployees, ClientType clientType) {
-		this.accounType = accounType;
+		this.accounTypeEnum = accounType;
 		this.accountNumber = accountNumber;
 		this.name = name;
 		this.street = street;
@@ -43,12 +46,12 @@ public class DataMap {
     public DataMap() {
 	}
 
-    public AccounTypeEnum getAccounType() {
-        return accounType;
+	public AccounTypeEnum getAccounTypeEnum() {
+        return accounTypeEnum;
     }
 
-    public void setAccounType(AccounTypeEnum accounType) {
-        this.accounType = accounType;
+    public void setAccounTypeEnum(AccounTypeEnum accounType) {
+        this.accounTypeEnum = accounType;
     }
 
     public String getAccountNumber() {
@@ -115,20 +118,12 @@ public class DataMap {
         this.email = email;
     }
 
-    public Integer getNumOfEmployees() {
+    public int getNumOfEmployees() {
         return numOfEmployees;
     }
 
-    public void setNumOfEmployees(Integer numOfEmployees) {
+    public void setNumOfEmployees(int numOfEmployees) {
         this.numOfEmployees = numOfEmployees;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
     }
 
     public ClientType getClientType() {
@@ -138,7 +133,32 @@ public class DataMap {
     public void setClientType(ClientType clientType) {
         this.clientType = clientType;
     }
-/*public LocalDate getCardExpirationDate() {
+
+    @Override
+    public String toString() {
+        return "DataMap{" + "accounType=" + accounTypeEnum + ", accountNumber='" + accountNumber + '\'' + ", name='" +
+                name + '\'' + ", street='" + street + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' + ", birthday='" + birthday + '\'' + ", email='" + email + '\'' + ", " +
+                "numOfEmployees=" + numOfEmployees + ", clientType=" + clientType + '}';
+    }
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public AccountType getAccounType() {
+		return accounType;
+	}
+
+	public void setAccounType(AccountType accounType) {
+		this.accounType = accounType;
+	}
+
+	/*public LocalDate getCardExpirationDate() {
 		return cardExpirationDate;
 	}
 

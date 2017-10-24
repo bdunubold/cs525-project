@@ -203,7 +203,7 @@ public class JDialog_AddCCAccount extends javax.swing.JDialog {
 		map.setZip(parentframe.zip);
 		map.setState(parentframe.state);
 		map.setCardNumber(parentframe.ccnumber);
-		map.setAccounType(parentframe.accountType);
+		map.setAccounTypeEnum(parentframe.accountType);
 		CCardAccountServiceImpl c=new CCardAccountServiceImpl();
 
 		Account account = c.createAccount(map);
