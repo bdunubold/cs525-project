@@ -2,18 +2,23 @@ package framework;
 
 public class DataMap {
 	private AccounTypeEnum accounType;
-	private String name;
-	private String street;
-	private String city;
-	private String state;
-	private String zip;
-	private String birthday;
-	private String email;
-	private int numOfEmployees;
+    private String accountNumber;
+    private String name;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
+    private String birthday;
+    private String email;
+    private int numOfEmployees;
+
+    private ClientType clientType;
 	
-	public DataMap(AccounTypeEnum accounType, String name,
-				   String street, String city, String state, String zip, String email,int numOfEmployees) {
+	public DataMap(AccounTypeEnum accounType, String accountNumber,
+                   String name, String street, String city, String state,
+                   String zip, String email, int numOfEmployees, ClientType clientType) {
 		this.accounType = accounType;
+		this.accountNumber = accountNumber;
 		this.name = name;
 		this.street = street;
 		this.state = state;
@@ -21,6 +26,7 @@ public class DataMap {
 		this.zip = zip;
 		this.email = email;
         this.numOfEmployees = numOfEmployees;
+        this.clientType = clientType;
 	}
 
     public AccounTypeEnum getAccounType() {
@@ -29,6 +35,14 @@ public class DataMap {
 
     public void setAccounType(AccounTypeEnum accounType) {
         this.accounType = accounType;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getName() {
@@ -95,10 +109,19 @@ public class DataMap {
         this.numOfEmployees = numOfEmployees;
     }
 
+    public ClientType getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(ClientType clientType) {
+        this.clientType = clientType;
+    }
+
     @Override
     public String toString() {
-        return "DataMap{" + "accounType=" + accounType + ", name='" + name + '\'' + ", street='" + street + '\'' + "," +
-                " city='" + city + '\'' + ", state='" + state + '\'' + ", zip='" + zip + '\'' + ", birthday='" +
-                birthday + '\'' + ", email='" + email + '\'' + ", numOfEmployees=" + numOfEmployees + '}';
+        return "DataMap{" + "accounType=" + accounType + ", accountNumber='" + accountNumber + '\'' + ", name='" +
+                name + '\'' + ", street='" + street + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' + ", birthday='" + birthday + '\'' + ", email='" + email + '\'' + ", " +
+                "numOfEmployees=" + numOfEmployees + ", clientType=" + clientType + '}';
     }
 }

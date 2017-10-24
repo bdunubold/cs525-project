@@ -1,6 +1,16 @@
 package ui.bank;
 
+import bank.command.CompanyAccountCreationCommand;
+import bank.command.PersonalAccountCreationCommand;
+import bank.customer.Company;
+import bank.customer.Individual;
+import bank.interest.CheckingInterest;
+import bank.interest.SavingInterest;
+import bank.type.CheckingAccount;
+import bank.type.SavingAccount;
+import framework.Account;
 import framework.AccountService;
+import framework.Address;
 import ui.bank.command.CommandInvoker;
 
 import java.awt.*;
@@ -16,8 +26,8 @@ public class BankFrm extends JFrame{
     /****
      * init variables in the object
      ****/
-    String accountnr, clientName, street, city, state,zip, birthDate, noOfEmployee, email, accountType;
-    String clientType, amountDeposit,amountWithdraw;
+    String accountnr, clientName, street, city, state, zip, birthDate, noOfEmployee, email, accountType;
+    String clientType, amountDeposit, amountWithdraw;
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -41,7 +51,7 @@ public class BankFrm extends JFrame{
         getContentPane().add(BorderLayout.CENTER, JPanel1);
         JPanel1.setBounds(0, 0, 575, 310);
         /*
-		/Add five buttons on the pane 
+        /Add five buttons on the pane
 		/for Adding personal account, Adding company account
 		/Deposit, Withdraw and Exit from the system
 		*/
@@ -202,6 +212,7 @@ public class BankFrm extends JFrame{
         pac.show();
 
         if (newaccount) {
+            addPersonalAccount();
             // add row to table
             rowdata[0] = accountnr;
             rowdata[1] = clientName;
@@ -216,6 +227,21 @@ public class BankFrm extends JFrame{
         }
     }
 
+    private void addPersonalAccount() {
+        // TODO parameters checking
+        Address address = new Address(street, city, state, zip);
+        Individual individual = new Individual(clientName, email, birthDate, address);
+
+        Account account = new Account(accountnr);
+        account.setCustomer(individual);
+        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
+        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
+
+//        PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService,account);
+//        commandInvoker.setCommand(pcCommand);
+//        commandInvoker.execute();
+    }
+
     void JButtonCompAC_actionPerformed(ActionEvent event) {
 		/*
 		 construct a JDialog_AddCompAcc type object 
@@ -228,6 +254,7 @@ public class BankFrm extends JFrame{
         pac.show();
 
         if (newaccount) {
+            addCompanyAccount();
             // add row to table
             rowdata[0] = accountnr;
             rowdata[1] = clientName;
@@ -240,6 +267,22 @@ public class BankFrm extends JFrame{
             newaccount = false;
         }
 
+    }
+
+    private void addCompanyAccount() {
+        // TODO parameters checking
+        Address address = new Address(street, city, state, zip);
+//        Company company = new Company(clientName, email, Integer.parseInt(noOfEmployee), address);
+//
+//        Account account = new Account(accountnr);
+//        account.setCustomer(company);
+//        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
+//        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
+//
+//        CompanyAccountCreationCommand pcCommand = new CompanyAccountCreationCommand(accountService,account);
+//
+//        commandInvoker.setCommand(pcCommand);
+//        commandInvoker.execute();
     }
 
     void JButtonDeposit_actionPerformed(ActionEvent event) {
@@ -276,13 +319,14 @@ public class BankFrm extends JFrame{
             wd.show();
 
             // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+            long deposit = Long.parseLong(amountWithdraw);
             String samount = (String)model.getValueAt(selection, 5);
             long currentamount = Long.parseLong(samount);
             long newamount = currentamount - deposit;
             model.setValueAt(String.valueOf(newamount), selection, 5);
             if (newamount < 0) {
-                JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" + String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" +
+                        String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -290,7 +334,8 @@ public class BankFrm extends JFrame{
     }
 
     void JButtonAddinterest_actionPerformed(ActionEvent event) {
-        JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts", "Add interest to all accounts", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts", "Add interest to all " +
+                "accounts", JOptionPane.WARNING_MESSAGE);
 
     }
 }
