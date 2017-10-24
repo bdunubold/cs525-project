@@ -1,11 +1,14 @@
 package ui.bank;
 
+import bank.BankServiceImpl;
 import bank.command.*;
 import framework.AccounTypeEnum;
 import framework.AccountService;
+import framework.ClientType;
 import framework.DataMap;
 import ui.bank.command.Command;
 import ui.bank.command.CommandInvoker;
+import ui.bank.rule.RuleSetFactory;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +37,8 @@ public class BankFrm extends JFrame{
 
     public BankFrm() {
         myframe = this;
-        //TODO initial accountService variable
+        // initial accountService variable
+        accountService = new BankServiceImpl();
 
         setTitle("Bank Application.");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -222,19 +226,20 @@ public class BankFrm extends JFrame{
     }
 
     private void addPersonalAccount() {
-        // TODO parameters checking
-        //        AccounTypeEnum accounType, String accountNumber,
-        //                String name, String street, String city, String state,
-        //                String zip, String email, int numOfEmployees, ClientType clientType
+        // parameters checking
         DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
                 accountnr, clientName, street, city, state, zip, email, null, framework.ClientType.INDIVIDUAL);
+
+        RuleSetFactory.getRuleSet().validate(dataMap);
+
+        dataMap.setBirthday(birthDate);
 
         PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService, dataMap);
         commandInvoker.execute(pcCommand);
     }
 
     void JButtonCompAC_actionPerformed(ActionEvent event) {
-		/*
+        /*
 		 construct a JDialog_AddCompAcc type object 
 		 set the boundaries and 
 		 show it 
@@ -261,11 +266,14 @@ public class BankFrm extends JFrame{
     }
 
     private void addCompanyAccount() {
-        // TODO parameters validation
+        // \ parameters validation
 
         DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
-                accountnr, clientName, street, city, state, zip, email, Integer.parseInt(noOfEmployee), framework
-                .ClientType.INDIVIDUAL);
+                accountnr, clientName, street, city, state, zip, email, Integer.parseInt(noOfEmployee), ClientType
+                .COMPANY);
+
+        RuleSetFactory.getRuleSet().validate(dataMap);
+
         CompanyAccountCreationCommand cCommand = new CompanyAccountCreationCommand(accountService, dataMap);
 
         commandInvoker.execute(cCommand);
@@ -283,8 +291,13 @@ public class BankFrm extends JFrame{
             dep.show();
 
             // compute new amount
-            // TODO amountDeposit validate
-            double deposit = Double.parseDouble(amount);
+            // amountDeposit validate
+            double deposit = 0.0;
+            try {
+                deposit = Double.parseDouble(amount);
+            } catch (Exception e) {
+                throw new IllegalArgumentException(e);
+            }
 
             Command dCommand = new DepositCommand(accountService, accnr, deposit);
             commandInvoker.execute(dCommand);
@@ -311,7 +324,13 @@ public class BankFrm extends JFrame{
 
             // compute new amount
             //TODO validate amount
-            double withdraw = Long.parseLong(amount);
+            double withdraw = 0.0;
+
+            try {
+                withdraw = Double.parseDouble(amount);
+            } catch (Exception e) {
+                throw new IllegalArgumentException(e);
+            }
             String samount = (String)model.getValueAt(selection, 5);
             double currentamount = Long.parseLong(samount);
             double newamount = currentamount - withdraw;

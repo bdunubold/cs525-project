@@ -118,11 +118,11 @@ public class DataMap {
         this.email = email;
     }
 
-    public int getNumOfEmployees() {
+    public Integer getNumOfEmployees() {
         return numOfEmployees;
     }
 
-    public void setNumOfEmployees(int numOfEmployees) {
+    public void setNumOfEmployees(Integer numOfEmployees) {
         this.numOfEmployees = numOfEmployees;
     }
 

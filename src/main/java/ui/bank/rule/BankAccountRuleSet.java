@@ -1,5 +1,6 @@
 package ui.bank.rule;
 
+import framework.ClientType;
 import framework.DataMap;
 
 import java.util.regex.Pattern;
@@ -33,6 +34,20 @@ public class BankAccountRuleSet implements RuleSet{
 
         if(!(Pattern.compile(".*@.*\\.com").matcher(dataMap.getEmail()).matches())){
             throw new IllegalArgumentException("the format of email is wrong!");
+        }
+
+if(dataMap.getClientType() == null){
+    throw new IllegalArgumentException("client type can not be null!");
+}
+
+        if(dataMap.getClientType() == ClientType.COMPANY){
+           if(dataMap.getNumOfEmployees() == null){
+                   throw new IllegalArgumentException("numOfEmployees can not be null!");
+           }
+        }else  if(dataMap.getClientType() == ClientType.INDIVIDUAL){
+            if(dataMap.getBirthday() == null){
+                throw new IllegalArgumentException("birthday can not be null!");
+            }
         }
 
     }
