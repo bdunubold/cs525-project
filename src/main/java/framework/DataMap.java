@@ -1,5 +1,7 @@
 package framework;
 
+import java.time.LocalDate;
+
 public class DataMap {
 	private AccounTypeEnum accounType;
     private String accountNumber;
@@ -11,9 +13,11 @@ public class DataMap {
     private String birthday;
     private String email;
     private int numOfEmployees;
+    private String cardNumber;
+ /*   private LocalDate cardExpirationDate;*/
 
     private ClientType clientType;
-	
+
 	public DataMap(AccounTypeEnum accounType, String accountNumber,
                    String name, String street, String city, String state,
                    String zip, String email, int numOfEmployees, ClientType clientType) {
@@ -29,7 +33,10 @@ public class DataMap {
         this.clientType = clientType;
 	}
 
-    public AccounTypeEnum getAccounType() {
+    public DataMap() {
+	}
+
+	public AccounTypeEnum getAccounType() {
         return accounType;
     }
 
@@ -124,4 +131,20 @@ public class DataMap {
                 ", zip='" + zip + '\'' + ", birthday='" + birthday + '\'' + ", email='" + email + '\'' + ", " +
                 "numOfEmployees=" + numOfEmployees + ", clientType=" + clientType + '}';
     }
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	/*public LocalDate getCardExpirationDate() {
+		return cardExpirationDate;
+	}
+
+	public void setCardExpirationDate(LocalDate cardExpirationDate) {
+		this.cardExpirationDate = cardExpirationDate;
+	}*/
 }

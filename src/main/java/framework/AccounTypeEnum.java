@@ -1,5 +1,5 @@
 package framework;
 
 public enum AccounTypeEnum{
-    CHECKING, SAVING
+    CHECKING, SAVING, GOLD, SILVER, BRONZE
 }

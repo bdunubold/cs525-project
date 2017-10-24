@@ -3,6 +3,7 @@ package ccard;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import ccard.interest.MinimumInterest;
 import ccard.interest.MonthlyInterest;
@@ -10,6 +11,7 @@ import ccard.type.CreditAccount;
 import ccard.type.SilverType;
 import framework.Account;
 import framework.AccountDAO;
+import framework.AccountDAOImpl;
 import framework.AccountEntry;
 import framework.Address;
 import framework.Card;
@@ -19,8 +21,8 @@ import framework.InterestStrategy;
 
 public class CCardAccountServiceImpl extends ICCardAccountService {
 
-	public CCardAccountServiceImpl(AccountDAO accountDAO) {
-		super(accountDAO);
+	public CCardAccountServiceImpl() {
+		super(new AccountDAOImpl());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,7 +30,8 @@ public class CCardAccountServiceImpl extends ICCardAccountService {
 	public Account createAccount(DataMap data) {
 		// TODO Auto-generated method stub
 		Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
-		Account account = new Account(data.getAccountNumber());
+
+		Account account = new Account(UUID.randomUUID().toString().replace("-", ""));
 		account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
 		CreditAccount creditAccount = new CreditAccount();
 		creditAccount.setCreditType(new SilverType());
@@ -37,10 +40,9 @@ public class CCardAccountServiceImpl extends ICCardAccountService {
 		Card card = new Card();
 		card.setActive(true);
 
-		card.setCardNumber("100000");
+		card.setCardNumber(data.getCardNumber());
 
-		card.setExpDate(LocalDate.of(LocalDate.now().getYear() + 2, LocalDate.now().getMonth(),
-				LocalDate.now().getDayOfMonth()));
+		card.setExpDate(LocalDate.now().plusYears(2));
 
 		account.setCard(card);
 
