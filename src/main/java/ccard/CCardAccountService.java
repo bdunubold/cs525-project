@@ -3,6 +3,7 @@ package ccard;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import ccard.type.CreditAccount;
 import ccard.type.SilverType;
@@ -33,6 +34,8 @@ public class CCardAccountService extends AccountService {
 		account.setAccountType(creditAccount);
 		Card card = new Card();
 		card.setActive(true);
+		
+		
 		card.setCardNumber("100000");
 
 		card.setExpDate(LocalDate.of(LocalDate.now().getYear() + 2, LocalDate.now().getMonth(),
@@ -48,7 +51,8 @@ public class CCardAccountService extends AccountService {
 	@Override
 	public Account getAccount(String accountNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		Account account = accountDAO.loadAccount(accountNumber);
+		return account;
 	}
 
 	@Override
@@ -78,6 +82,7 @@ public class CCardAccountService extends AccountService {
 
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.addInterest();
+		accountDAO.updateAccount(account);
 	}
 
 	public List<AccountEntry> generateMonthlyReport(String accountNumber) {
