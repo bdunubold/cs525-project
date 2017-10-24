@@ -18,6 +18,8 @@ public abstract class AccountService {
 	public void setAccountDAO(AccountDAO accountDAO) {
 		this.accountDAO = accountDAO;
 	}
+	
+	public abstract void addInterest();
 
 	public abstract Account createAccount(DataMap data);
 
