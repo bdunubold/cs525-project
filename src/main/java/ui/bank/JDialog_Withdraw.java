@@ -76,7 +76,7 @@ public class JDialog_Withdraw extends JDialog{
     }
 
     void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
-        parentframe.amountWithdraw = JTextField_AMT.getText();
+        parentframe.amount = JTextField_AMT.getText();
         dispose();
     }
 

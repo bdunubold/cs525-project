@@ -1,5 +1,6 @@
 package ui.bank;
 
+<<<<<<< HEAD
 //import bank.customer.Individual;
 //import bank.interest.CheckingInterest;
 //import bank.interest.SavingInterest;
@@ -9,12 +10,20 @@ package ui.bank;
 //import framework.AccountService;
 //import framework.Address;
 //import ui.bank.command.CommandInvoker;
+=======
+import bank.command.*;
+import framework.AccounTypeEnum;
+import framework.AccountService;
+import framework.DataMap;
+import ui.bank.command.Command;
+import ui.bank.command.CommandInvoker;
+>>>>>>> 977afb3ddf07185e8c314a3ee7870e3aa96d4aeb
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.*;
 
 /**
  * A basic JFC based application.
@@ -24,7 +33,7 @@ public class BankFrm extends JFrame{
      * init variables in the object
      ****/
     String accountnr, clientName, street, city, state, zip, birthDate, noOfEmployee, email, accountType;
-    String clientType, amountDeposit, amountWithdraw;
+    String clientType, amount;
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -198,8 +207,8 @@ public class BankFrm extends JFrame{
     }
 
     void JButtonPerAC_actionPerformed(ActionEvent event) {
-		/*
-		 JDialog_AddPAcc type object is for adding personal information
+        /*
+         JDialog_AddPAcc type object is for adding personal information
 		 construct a JDialog_AddPAcc type object 
 		 set the boundaries and show it 
 		*/
@@ -224,6 +233,7 @@ public class BankFrm extends JFrame{
         }
     }
 
+<<<<<<< HEAD
 //    private void addPersonalAccount() {
 //        // TODO parameters checking
 //        Address address = new Address(street, city, state, zip);
@@ -238,6 +248,19 @@ public class BankFrm extends JFrame{
 ////        commandInvoker.setCommand(pcCommand);
 ////        commandInvoker.execute();
 //    }
+=======
+    private void addPersonalAccount() {
+        // TODO parameters checking
+        //        AccounTypeEnum accounType, String accountNumber,
+        //                String name, String street, String city, String state,
+        //                String zip, String email, int numOfEmployees, ClientType clientType
+        DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
+                accountnr, clientName, street, city, state, zip, email, null, framework.ClientType.INDIVIDUAL);
+
+        PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService, dataMap);
+        commandInvoker.execute(pcCommand);
+    }
+>>>>>>> 977afb3ddf07185e8c314a3ee7870e3aa96d4aeb
 
     void JButtonCompAC_actionPerformed(ActionEvent event) {
 		/*
@@ -267,6 +290,7 @@ public class BankFrm extends JFrame{
     }
 
     private void addCompanyAccount() {
+<<<<<<< HEAD
         // TODO parameters checking
 //        Address address = new Address(street, city, state, zip);
 //        Company company = new Company(clientName, email, Integer.parseInt(noOfEmployee), address);
@@ -280,6 +304,16 @@ public class BankFrm extends JFrame{
 //
 //        commandInvoker.setCommand(pcCommand);
 //        commandInvoker.execute();
+=======
+        // TODO parameters validation
+
+        DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
+                accountnr, clientName, street, city, state, zip, email, Integer.parseInt(noOfEmployee), framework
+                .ClientType.INDIVIDUAL);
+        CompanyAccountCreationCommand cCommand = new CompanyAccountCreationCommand(accountService, dataMap);
+
+        commandInvoker.execute(cCommand);
+>>>>>>> 977afb3ddf07185e8c314a3ee7870e3aa96d4aeb
     }
 
     void JButtonDeposit_actionPerformed(ActionEvent event) {
@@ -294,10 +328,15 @@ public class BankFrm extends JFrame{
             dep.show();
 
             // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+            // TODO amountDeposit validate
+            double deposit = Double.parseDouble(amount);
+
+            Command dCommand = new DepositCommand(accountService, accnr, deposit);
+            commandInvoker.execute(dCommand);
+
             String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
-            long newamount = currentamount + deposit;
+            double currentamount = Double.parseDouble(samount);
+            double newamount = currentamount + deposit;
             model.setValueAt(String.valueOf(newamount), selection, 5);
         }
 
@@ -316,21 +355,28 @@ public class BankFrm extends JFrame{
             wd.show();
 
             // compute new amount
-            long deposit = Long.parseLong(amountWithdraw);
+            //TODO validate amount
+            double withdraw = Long.parseLong(amount);
             String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
-            long newamount = currentamount - deposit;
-            model.setValueAt(String.valueOf(newamount), selection, 5);
+            double currentamount = Long.parseLong(samount);
+            double newamount = currentamount - withdraw;
             if (newamount < 0) {
                 JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" +
                         String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
             }
+
+            Command wCommand = new WithdrawCommand(accountService, accnr, withdraw);
+            commandInvoker.execute(wCommand);
+
+            model.setValueAt(String.valueOf(newamount), selection, 5);
         }
 
 
     }
 
     void JButtonAddinterest_actionPerformed(ActionEvent event) {
+        Command aiCommand = new AddInterstCommand(accountService);
+        commandInvoker.execute(aiCommand);
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts", "Add interest to all " +
                 "accounts", JOptionPane.WARNING_MESSAGE);
 
