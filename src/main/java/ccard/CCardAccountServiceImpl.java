@@ -11,16 +11,15 @@ import ccard.type.SilverType;
 import framework.Account;
 import framework.AccountDAO;
 import framework.AccountEntry;
-import framework.AccountService;
-import framework.DataMap;
 import framework.Address;
 import framework.Card;
 import framework.Customer;
+import framework.DataMap;
 import framework.InterestStrategy;
 
-public class CCardAccountService extends AccountService {
+public class CCardAccountServiceImpl extends ICCardAccountService {
 
-	public CCardAccountService(AccountDAO accountDAO) {
+	public CCardAccountServiceImpl(AccountDAO accountDAO) {
 		super(accountDAO);
 		// TODO Auto-generated constructor stub
 	}
@@ -28,9 +27,9 @@ public class CCardAccountService extends AccountService {
 	@Override
 	public Account createAccount(DataMap data) {
 		// TODO Auto-generated method stub
-		Address address = new Address(street, city, state, zip);
-		Account account = new Account(accountNumber);
-		account.setCustomer(new Customer(customerName, email, address));
+		Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
+		Account account = new Account(data.getAccountNumber());
+		account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
 		CreditAccount creditAccount = new CreditAccount();
 		creditAccount.setCreditType(new SilverType());
 		creditAccount.setCreditLimit(1000);
@@ -71,6 +70,7 @@ public class CCardAccountService extends AccountService {
 		accountDAO.updateAccount(account);
 	}
 
+	@Override
 	public double getMininumPayment(String accountNumber) {
 
 		Account account = accountDAO.loadAccount(accountNumber);
@@ -92,19 +92,25 @@ public class CCardAccountService extends AccountService {
 
 	}
 
-	public void addInterest(String accountNumber) {
+	@Override
+	public void addInterest() {
 
-		Account account = accountDAO.loadAccount(accountNumber);
+		for (Account account : getAllAccounts()) {
 
-		CreditAccount credit = (CreditAccount) account.getAccountType();
+			if (account.getAccountType() instanceof CreditAccount) {
+				CreditAccount credit = (CreditAccount) account.getAccountType();
 
-		InterestStrategy interest = new MonthlyInterest(credit.getCreditType());
-		account.setInterestStrategy(interest);
+				InterestStrategy interest = new MonthlyInterest(credit.getCreditType());
+				account.setInterestStrategy(interest);
 
-		account.addInterest();
-		accountDAO.updateAccount(account);
+				account.addInterest();
+				accountDAO.updateAccount(account);
+			}
+
+		}
 	}
 
+	@Override
 	public List<AccountEntry> generateMonthlyReport(String accountNumber) {
 
 		int month = LocalDate.now().getMonthValue();
@@ -118,12 +124,6 @@ public class CCardAccountService extends AccountService {
 	public void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public Account createAccount(String accountNumber, String customerName) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
