@@ -22,13 +22,12 @@ public abstract class AccountDAO {
 
 	public Account loadAccount(String accountNumber) {
 		for (Account account : accountlist) {
-			if (account.getAccountNumber() == accountNumber) {
+			if (account.getAccountNumber().equals(accountNumber)) {
 				return account;
 			}
 		}
 		return null;
 	}
-
 	public Collection<Account> getAccounts() {
 		return accountlist;
 	}
