@@ -1,9 +1,6 @@
 package ui.bank;
 
-import bank.command.CompanyAccountCreationCommand;
-import bank.command.DepositCommand;
-import bank.command.PersonalAccountCreationCommand;
-import bank.command.WithdrawCommand;
+import bank.command.*;
 import framework.AccounTypeEnum;
 import framework.AccountService;
 import framework.DataMap;
@@ -226,13 +223,6 @@ public class BankFrm extends JFrame{
 
     private void addPersonalAccount() {
         // TODO parameters checking
-        //        Address address = new Address(street, city, state, zip);
-        //        Individual individual = new Individual(clientName, email, birthDate, address);
-        //
-        //        Account account = new Account(accountnr);
-        //        account.setCustomer(individual);
-        //        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
-        //        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
         //        AccounTypeEnum accounType, String accountNumber,
         //                String name, String street, String city, String state,
         //                String zip, String email, int numOfEmployees, ClientType clientType
@@ -272,13 +262,6 @@ public class BankFrm extends JFrame{
 
     private void addCompanyAccount() {
         // TODO parameters validation
-        //        Address address = new Address(street, city, state, zip);
-        //        Company company = new Company(clientName, email, Integer.parseInt(noOfEmployee), address);
-        //
-        //        Account account = new Account(accountnr);
-        //        account.setCustomer(company);
-        //        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
-        //        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
 
         DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
                 accountnr, clientName, street, city, state, zip, email, Integer.parseInt(noOfEmployee), framework
@@ -347,6 +330,8 @@ public class BankFrm extends JFrame{
     }
 
     void JButtonAddinterest_actionPerformed(ActionEvent event) {
+        Command aiCommand = new AddInterstCommand(accountService);
+        commandInvoker.execute(aiCommand);
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts", "Add interest to all " +
                 "accounts", JOptionPane.WARNING_MESSAGE);
 

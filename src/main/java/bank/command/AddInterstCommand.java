@@ -7,13 +7,13 @@ public class AddInterstCommand implements Command{
 
 private AccountService accountService;
 
-    private AddInterstCommand(AccountService accountService){
+    public AddInterstCommand(AccountService accountService){
         this.accountService = accountService;
     }
 
     @Override
     public void execute() {
-
+accountService.addInterest();
     }
 
     @Override
