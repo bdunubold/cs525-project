@@ -5,7 +5,7 @@ import credit.type.Gold;
 import credit.type.Silver;
 
 public interface Visitor {
-	public void visit(Gold accounType);
-	public void visit(Silver accounType);
-	public void visit(Bronze accounType);
+	public double visit(Gold accounType, double amount);
+	public double visit(Silver accounType, double amount);
+	public double visit(Bronze accounType, double amount);
 }
