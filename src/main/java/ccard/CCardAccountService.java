@@ -21,26 +21,27 @@ public class CCardAccountService extends AccountService {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public Account createAccount(String accountNumber, String customerName,String email,String street,String city, String state,String zip) {
+	public Account createAccount(String accountNumber, String customerName, String email, String street, String city,
+			String state, String zip) {
 		// TODO Auto-generated method stub
-		Address address =new Address(street, city, state, zip);
+		Address address = new Address(street, city, state, zip);
 		Account account = new Account(accountNumber);
 		account.setCustomer(new Customer(customerName, email, address));
-		CreditAccount creditAccount =new CreditAccount();
+		CreditAccount creditAccount = new CreditAccount();
 		creditAccount.setCreditType(new SilverType());
 		creditAccount.setCreditLimit(1000);
 		account.setAccountType(creditAccount);
 		Card card = new Card();
 		card.setActive(true);
 		card.setCardNumber("100000");
-		
-		card.setExpDate(LocalDate.of(LocalDate.now().getYear()+2, LocalDate.now().getMonth() , LocalDate.now().getDayOfMonth()));
-	
+
+		card.setExpDate(LocalDate.of(LocalDate.now().getYear() + 2, LocalDate.now().getMonth(),
+				LocalDate.now().getDayOfMonth()));
+
 		account.setCard(card);
-		
+
 		accountDAO.saveAccount(account);
-		
+
 		return account;
 	}
 
@@ -93,7 +94,6 @@ public class CCardAccountService extends AccountService {
 		// TODO Auto-generated method stub
 
 	}
-
 
 	@Override
 	public Account createAccount(String accountNumber, String customerName) {

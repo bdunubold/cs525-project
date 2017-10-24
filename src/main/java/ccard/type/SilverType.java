@@ -1,17 +1,14 @@
 package ccard.type;
 
+import ccard.interest.CreditIntrestVisitor;
+
 public class SilverType implements CreditType {
 
 	@Override
-	public double getMininumPayment() {
+	public double accept(CreditIntrestVisitor visitor, double amount) {
 		// TODO Auto-generated method stub
-		return 0.12;
+		return visitor.visit(this, amount);
 	}
 
-	@Override
-	public double monthlyInterest() {
-		// TODO Auto-generated method stub
-		return 0.08;
-	}
 
 }
