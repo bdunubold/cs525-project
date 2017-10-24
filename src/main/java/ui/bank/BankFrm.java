@@ -6,8 +6,8 @@ import framework.AccounTypeEnum;
 import framework.AccountService;
 import framework.ClientType;
 import framework.DataMap;
-import ui.bank.command.Command;
-import ui.bank.command.CommandInvoker;
+import framework.command.Command;
+import framework.command.CommandInvoker;
 import ui.bank.rule.RuleSetFactory;
 
 import javax.swing.*;

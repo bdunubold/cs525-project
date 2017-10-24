@@ -72,11 +72,7 @@ public class Account {
 	public Collection<AccountEntry> getEntryList() {
 		return entryList;
 	}
-	
-	public void setInterestType (InterestStrategy strategy) {
-		this.interest = strategy;
-	}
-	
+		
 	public void addInterest () {
 		deposit(interest.calcInterest(getBalance()));
 	}

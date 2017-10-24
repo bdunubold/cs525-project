@@ -1,4 +1,4 @@
-package ui.bank.command;
+package framework.command;
 
 import java.util.ArrayList;
 import java.util.List;
