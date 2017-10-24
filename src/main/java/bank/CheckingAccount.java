@@ -7,6 +7,6 @@ public class CheckingAccount implements AccountType {
 
     public void setStrategy(Account account)
     {
-        account.setInterestType(new CheckingInterest());
+        account.setInterest(new CheckingInterest());
     }
 }

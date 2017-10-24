@@ -6,6 +6,6 @@ import framework.AccountType;
 public class SavingAccountType implements AccountType {
     public void setStrategy(Account account)
     {
-        account.setInterestType(new SavingInterest());
+        account.setInterest(new SavingInterest());
     }
 }
