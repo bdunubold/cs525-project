@@ -2,6 +2,7 @@ package framework;
 
 public class DataMap {
 	String accounType;
+	String accountNumber;
 	String name;
 	String street;
 	String city;
@@ -11,8 +12,9 @@ public class DataMap {
 	String email;
 	String numOfEmployees;
 	
-	public DataMap(String accounType, String name, String street, String city, String state, String zip, String email) {
+	public DataMap(String accounType, String accountNumber, String name, String street, String city, String state, String zip, String email) {
 		this.accounType = accounType;
+		this.accountNumber = accountNumber;
 		this.name = name;
 		this.street = street;
 		this.state = state;
@@ -21,6 +23,14 @@ public class DataMap {
 		this.email = email;
 	}
 	
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
 	public String getAccounType() {
 		return accounType;
 	}
