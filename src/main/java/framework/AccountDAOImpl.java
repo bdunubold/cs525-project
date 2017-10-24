@@ -3,7 +3,7 @@ package framework;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class AccountDAOImpl implements AccountDAO {
+public class AccountDAOImpl implements AccountDAO {
 
 	Collection<Account> accountlist = new ArrayList<Account>();
 

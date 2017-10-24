@@ -4,22 +4,17 @@ import bank.command.CompanyAccountCreationCommand;
 import bank.command.DepositCommand;
 import bank.command.PersonalAccountCreationCommand;
 import bank.command.WithdrawCommand;
-import bank.customer.Company;
-import bank.customer.Individual;
-import bank.interest.CheckingInterest;
-import bank.interest.SavingInterest;
-import bank.type.CheckingAccount;
-import bank.type.SavingAccount;
-import framework.*;
+import framework.AccounTypeEnum;
+import framework.AccountService;
+import framework.DataMap;
 import ui.bank.command.Command;
 import ui.bank.command.CommandInvoker;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
-import java.util.DoubleSummaryStatistics;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.*;
 
 /**
  * A basic JFC based application.

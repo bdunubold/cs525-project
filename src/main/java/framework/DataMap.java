@@ -4,16 +4,27 @@ public class DataMap {
 	private AccounTypeEnum accounType;
     private String accountNumber;
     private String name;
-    private String street;
+    private String customerType;
+    public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	private String street;
     private String city;
     private String state;
     private String zip;
     private String birthday;
     private String email;
     private Integer numOfEmployees;
+    private String cardNumber;
+ /*   private LocalDate cardExpirationDate;*/
 
     private ClientType clientType;
-	
+
 	public DataMap(AccounTypeEnum accounType, String accountNumber,
                    String name, String street, String city, String state,
                    String zip, String email, Integer numOfEmployees, ClientType clientType) {
@@ -27,6 +38,9 @@ public class DataMap {
 		this.email = email;
         this.numOfEmployees = numOfEmployees;
         this.clientType = clientType;
+	}
+
+    public DataMap() {
 	}
 
     public AccounTypeEnum getAccounType() {
@@ -101,12 +115,20 @@ public class DataMap {
         this.email = email;
     }
 
-    public int getNumOfEmployees() {
+    public Integer getNumOfEmployees() {
         return numOfEmployees;
     }
 
-    public void setNumOfEmployees(int numOfEmployees) {
+    public void setNumOfEmployees(Integer numOfEmployees) {
         this.numOfEmployees = numOfEmployees;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public ClientType getClientType() {
@@ -116,12 +138,11 @@ public class DataMap {
     public void setClientType(ClientType clientType) {
         this.clientType = clientType;
     }
+/*public LocalDate getCardExpirationDate() {
+		return cardExpirationDate;
+	}
 
-    @Override
-    public String toString() {
-        return "DataMap{" + "accounType=" + accounType + ", accountNumber='" + accountNumber + '\'' + ", name='" +
-                name + '\'' + ", street='" + street + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' + ", birthday='" + birthday + '\'' + ", email='" + email + '\'' + ", " +
-                "numOfEmployees=" + numOfEmployees + ", clientType=" + clientType + '}';
-    }
+	public void setCardExpirationDate(LocalDate cardExpirationDate) {
+		this.cardExpirationDate = cardExpirationDate;
+	}*/
 }
