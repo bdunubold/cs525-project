@@ -1,23 +1,30 @@
 package framework;
 
 import java.util.Collection;
+import java.util.ArrayList;
 
-public abstract class AccountServiceImpl extends AccountService {
-	
-	
-	public AccountServiceImpl(AccountDAO accountDAO) {
-		super(accountDAO);
-		// TODO Auto-generated constructor stub
+public class AccountServiceImpl implements AccountService {
+	private AccountDAO accountDAO;
+
+	public AccountServiceImpl() {
+		accountDAO = new AccountDAOImpl();
 	}
-	/**
-	 * we need to override in each service
-	 */
-	public abstract Account createAccount(DataMap data);
+
+	public Account createAccount(DataMap params) {
+		Account account = new Account(params.getAccountNumber());
+		Address address = new Address(params.getCity(), params.getState(), params.getStreet(), params.getZip());
+		Customer customer = new Customer(params.getName(), params.getEmail(), address);
+		account.setCustomer(customer);
+
+		accountDAO.saveAccount(account);
+
+		return account;
+	}
 
 	public void deposit(String accountNumber, double amount) {
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.deposit(amount);
-		
+
 		accountDAO.updateAccount(account);
 	}
 
@@ -36,16 +43,27 @@ public abstract class AccountServiceImpl extends AccountService {
 		accountDAO.updateAccount(account);
 	}
 
-	public Address createAddress(String street, String city, String state, String zip) {
-		return new Address(street, city, state, zip);
-	}
-
-
 	public void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description) {
 		Account fromAccount = accountDAO.loadAccount(fromAccountNumber);
 		Account toAccount = accountDAO.loadAccount(toAccountNumber);
 		fromAccount.transferFunds(toAccount, amount, description);
 		accountDAO.updateAccount(fromAccount);
 		accountDAO.updateAccount(toAccount);
+	}
+
+	public void addInterest() {
+		ArrayList<Account> accountList = (ArrayList<Account>) getAllAccounts();
+		ArrayList<Account> accountList1 = (ArrayList<Account>) accountList.clone();
+
+		accountList1.forEach(account -> {
+			account.addInterest();
+			accountDAO.updateAccount(account);
+		});
+	}
+
+	@Override
+	public void generateReport() {
+		// TODO Auto-generated method stub
+		
 	}
 }

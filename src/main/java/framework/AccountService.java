@@ -1,35 +1,15 @@
 package framework;
 
-import java.util.Collection;
+public interface AccountService {
 
-public abstract class AccountService {
+	public Account createAccount(DataMap params);
 
-	protected AccountDAO accountDAO;
+	public void deposit(String accountNumber, double amount);
 
-	public AccountService(AccountDAO accountDAO) {
-		this.accountDAO = accountDAO;
+	public void withdraw(String accountNumber, double amount);
 
-	}
+	public void addInterest();
 
-	public AccountDAO getAccountDAO() {
-		return accountDAO;
-	}
+	public void generateReport();
 
-	public void setAccountDAO(AccountDAO accountDAO) {
-		this.accountDAO = accountDAO;
-	}
-	
-	public abstract void addInterest();
-
-	public abstract Account createAccount(DataMap data);
-
-	public abstract Account getAccount(String accountNumber);
-
-	public abstract Collection<Account> getAllAccounts();
-
-	public abstract void deposit(String accountNumber, double amount);
-
-	public abstract void withdraw(String accountNumber, double amount);
-
-	public abstract void transferFunds(String fromAccountNumber, String toAccountNumber, double amount, String description);
 }

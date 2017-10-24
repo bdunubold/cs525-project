@@ -1,8 +1,5 @@
 package framework;
 
-import java.time.LocalDate;
+public interface AccountType {
 
-public abstract class AccountType {
-
-	
 }

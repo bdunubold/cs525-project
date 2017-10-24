@@ -5,42 +5,16 @@ import java.util.Collection;
 import java.util.List;
 
 public class Account {
+	
+	private AccountType type;
 
+	private InterestStrategy interest;
+	
 	private Customer customer;
-	private AccountType accountType;
-	private Card card;
+
 	private String accountNumber;
+
 	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
-
-	private InterestStrategy interestStrategy;
-
-	public InterestStrategy getInterestStrategy() {
-		return interestStrategy;
-	}
-
-	public void setInterestStrategy(InterestStrategy interestStrategy) {
-		this.interestStrategy = interestStrategy;
-	}
-
-	public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}
-
-	public void setEntryList(List<AccountEntry> entryList) {
-		this.entryList = entryList;
-	}
-
-	public AccountType getAccountType() {
-		return accountType;
-	}
-
-	public void setAccountType(AccountType accountType) {
-		this.accountType = accountType;
-	}
 
 	public Account(String accountNumber) {
 		this.accountNumber = accountNumber;
@@ -81,17 +55,10 @@ public class Account {
 				toAccount.getCustomer().getName());
 		AccountEntry toEntry = new AccountEntry(amount, description, toAccount.getAccountNumber(),
 				toAccount.getCustomer().getName());
-
+		
 		entryList.add(fromEntry);
-
+		
 		toAccount.addEntry(toEntry);
-	}
-
-	public void addInterest() {
-
-		double interest = interestStrategy.calcInterest(getBalance());
-		AccountEntry entry = new AccountEntry(interest, "interest", "", "");
-		entryList.add(entry);
 	}
 
 	public Customer getCustomer() {
@@ -105,16 +72,30 @@ public class Account {
 	public Collection<AccountEntry> getEntryList() {
 		return entryList;
 	}
+	
+	public void setInterestType (InterestStrategy strategy) {
+		this.interest = strategy;
+	}
+	
+	public void addInterest () {
+		deposit(interest.calcInterest(getBalance()));
+	}
+	
+	
+	public AccountType getType() {
+		return type;
+	}
 
-	public List<AccountEntry> getReport(int month, int year) {
+	public void setType(AccountType type) {
+		this.type = type;
+	}
 
-		List<AccountEntry> list = new ArrayList<>();
-		for (AccountEntry entry : entryList) {
-			if (entry.getDate().getMonthValue() == month && entry.getDate().getYear() == year)
-				list.add(entry);
-		}
+	public InterestStrategy getInterest() {
+		return interest;
+	}
 
-		return list;
+	public void setInterest(InterestStrategy interest) {
+		this.interest = interest;
 	}
 
 }

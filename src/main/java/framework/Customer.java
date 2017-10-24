@@ -1,20 +1,8 @@
 package framework;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Customer {
-
-	List<Account> accounts = new ArrayList<Account>();
 	private String name;
 	private String email;
-
-	public void addAccount(Account account) {
-		accounts.add(account);
-	}
-
-	private List<Account> accountList;
-
 	private Address address;
 
 	public Customer(String name, String email, Address address) {
@@ -31,12 +19,12 @@ public class Customer {
 		this.name = name;
 	}
 
-	public List<Account> getAccountList() {
-		return accountList;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAccountList(List<Account> accountList) {
-		this.accountList = accountList;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Address getAddress() {
@@ -46,18 +34,9 @@ public class Customer {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	@Override
 	public String toString() {
 		return getName();
 	}
-
 }

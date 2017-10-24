@@ -3,8 +3,7 @@ package framework;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class AccountDAOImpl implements AccountDAO {
-
+public class AccountDAOImpl implements AccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();
 
 	public void saveAccount(Account account) {
@@ -32,6 +31,5 @@ public abstract class AccountDAOImpl implements AccountDAO {
 	public Collection<Account> getAccounts() {
 		return accountlist;
 	}
-
 
 }

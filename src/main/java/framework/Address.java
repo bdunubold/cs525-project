@@ -1,26 +1,16 @@
 package framework;
 
 public class Address {
-
-	private String street;
 	private String city;
 	private String state;
+	private String street;
 	private String zip;
 
-	public Address(String street, String city, String state, String zip) {
-		super();
-		this.street = street;
+	public Address(String city, String state, String street, String zip) {
 		this.city = city;
 		this.state = state;
-		this.zip = zip;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
 		this.street = street;
+		this.zip = zip;
 	}
 
 	public String getCity() {
@@ -39,12 +29,25 @@ public class Address {
 		this.state = state;
 	}
 
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 	public String getZip() {
 		return zip;
 	}
 
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+	
+	@Override
+	public String toString() {
+		return getCity() + " " + getState();
 	}
 
 }

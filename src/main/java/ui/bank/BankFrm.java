@@ -1,13 +1,14 @@
 package ui.bank;
 
-import bank.customer.Individual;
-import bank.interest.CheckingInterest;
-import bank.type.CheckingAccount;
-import bank.type.SavingAccount;
-import framework.Account;
-import framework.AccountService;
-import framework.Address;
-import ui.bank.command.CommandInvoker;
+//import bank.customer.Individual;
+//import bank.interest.CheckingInterest;
+//import bank.interest.SavingInterest;
+//import bank.type.CheckingAccount;
+//import bank.type.SavingAccount;
+//import framework.Account;
+//import framework.AccountService;
+//import framework.Address;
+//import ui.bank.command.CommandInvoker;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,9 +31,9 @@ public class BankFrm extends JFrame{
     private JScrollPane JScrollPane1;
     private BankFrm myframe;
     private Object rowdata[];
-    private AccountService accountService;
-
-    private CommandInvoker commandInvoker = new CommandInvoker();
+//    private AccountService accountService;
+//
+//    private CommandInvoker commandInvoker = new CommandInvoker();
 
     public BankFrm() {
         myframe = this;
@@ -208,7 +209,7 @@ public class BankFrm extends JFrame{
         pac.show();
 
         if (newaccount) {
-            addPersonalAccount();
+//            addPersonalAccount();
             // add row to table
             rowdata[0] = accountnr;
             rowdata[1] = clientName;
@@ -223,20 +224,20 @@ public class BankFrm extends JFrame{
         }
     }
 
-    private void addPersonalAccount() {
-        // TODO parameters checking
-        Address address = new Address(street, city, state, zip);
-        Individual individual = new Individual(clientName, email, birthDate, address);
-
-        Account account = new Account(accountnr);
-        account.setCustomer(individual);
-        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
-        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
-
-//        PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService,account);
-//        commandInvoker.setCommand(pcCommand);
-//        commandInvoker.execute();
-    }
+//    private void addPersonalAccount() {
+//        // TODO parameters checking
+//        Address address = new Address(street, city, state, zip);
+//        Individual individual = new Individual(clientName, email, birthDate, address);
+//
+//        Account account = new Account(accountnr);
+//        account.setCustomer(individual);
+//        account.setAccountType("Ch".equals(accountType) ? new CheckingAccount() : new SavingAccount());
+//        account.setInterestStrategy("Ch".equals(accountType) ? new CheckingInterest() : new SavingInterest());
+//
+////        PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService,account);
+////        commandInvoker.setCommand(pcCommand);
+////        commandInvoker.execute();
+//    }
 
     void JButtonCompAC_actionPerformed(ActionEvent event) {
 		/*
@@ -267,7 +268,7 @@ public class BankFrm extends JFrame{
 
     private void addCompanyAccount() {
         // TODO parameters checking
-        Address address = new Address(street, city, state, zip);
+//        Address address = new Address(street, city, state, zip);
 //        Company company = new Company(clientName, email, Integer.parseInt(noOfEmployee), address);
 //
 //        Account account = new Account(accountnr);
