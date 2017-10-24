@@ -41,4 +41,10 @@ public class CreditServiceImpl extends AccountService {
 		return account;
 	}
 
+	@Override
+	public String generateReport() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -19,4 +19,10 @@ public class BankServiceImpl extends AccountService {
         BankDAOImpl.getInstance().saveAccount(account);
         return account;
 	}
+
+	@Override
+	public String generateReport() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -58,11 +58,7 @@ public abstract class AccountService implements Observable {
 		});
 	}
 
-	public void generateReport() {
-		// TODO Auto-generated method stub
-
-	}
-
+	public abstract String generateReport();
 	// TODO
 	/**
 	 * update this whatever you change.
