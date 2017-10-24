@@ -323,7 +323,7 @@ public class BankFrm extends JFrame{
             wd.show();
 
             // compute new amount
-            //TODO validate amount
+            // validate amount
             double withdraw = 0.0;
 
             try {
