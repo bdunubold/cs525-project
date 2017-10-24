@@ -10,13 +10,13 @@ public class DataMap {
     private String zip;
     private String birthday;
     private String email;
-    private int numOfEmployees;
+    private Integer numOfEmployees;
 
     private ClientType clientType;
 	
 	public DataMap(AccounTypeEnum accounType, String accountNumber,
                    String name, String street, String city, String state,
-                   String zip, String email, int numOfEmployees, ClientType clientType) {
+                   String zip, String email, Integer numOfEmployees, ClientType clientType) {
 		this.accounType = accounType;
 		this.accountNumber = accountNumber;
 		this.name = name;
