@@ -2,11 +2,13 @@ package ccard;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import ccard.type.CreditAccount;
 import ccard.type.SilverType;
 import framework.Account;
 import framework.AccountDAO;
+import framework.AccountEntry;
 import framework.AccountService;
 import framework.Address;
 import framework.Card;
@@ -57,12 +59,32 @@ public class CCardAccountService extends AccountService {
 	@Override
 	public void deposit(String accountNumber, double amount) {
 		// TODO Auto-generated method stub
+		Account account = accountDAO.loadAccount(accountNumber);
+		account.deposit(amount);
+		accountDAO.updateAccount(account);
+	}
+
+	// charge account
+	@Override
+	public void withdraw(String accountNumber, double amount) {
+		Account account = accountDAO.loadAccount(accountNumber);
+		account.withdraw(amount);
+		accountDAO.updateAccount(account);
 
 	}
 
-	@Override
-	public void withdraw(String accountNumber, double amount) {
-		// TODO Auto-generated method stub
+	public void addInterest(String accountNumber) {
+
+		Account account = accountDAO.loadAccount(accountNumber);
+		account.addInterest();
+	}
+
+	public List<AccountEntry> generateMonthlyReport(String accountNumber) {
+
+		int month = LocalDate.now().getMonthValue();
+		int year = LocalDate.now().getYear();
+		Account account = accountDAO.loadAccount(accountNumber);
+		return account.getReport(month, year);
 
 	}
 
