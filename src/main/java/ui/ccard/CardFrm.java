@@ -286,7 +286,7 @@ public class CardFrm extends javax.swing.JFrame{
             } catch (Exception e) {
                 throw new IllegalArgumentException(e);
             }
-            //TODO does credit account have accountNo?
+
             Command dCommand = new DepositCommand(accountService, creditAccountNo, deposit);
             commandInvoker.execute(dCommand);
 
@@ -295,8 +295,6 @@ public class CardFrm extends javax.swing.JFrame{
             double newamount = currentamount + deposit;
             model.setValueAt(String.valueOf(newamount), selection, 4);
         }
-
-
     }
 
     void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event) {
