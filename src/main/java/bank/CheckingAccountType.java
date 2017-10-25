@@ -3,7 +3,7 @@ package bank;
 import framework.Account;
 import framework.AccountType;
 
-public class CheckingAccount implements AccountType {
+public class CheckingAccountType implements AccountType {
 
     public void setStrategy(Account account)
     {
