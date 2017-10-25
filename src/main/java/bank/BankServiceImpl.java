@@ -14,7 +14,7 @@ public class BankServiceImpl extends AccountService {
 	@Override
 	public Account createAccount(DataMap data) {
         Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
-        Account account = new Account(UUID.randomUUID().toString().replace("-", ""));
+        Account account = new Individual(UUID.randomUUID().toString().replace("-", ""));
         account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
         BankDAOImpl.getInstance().saveAccount(account);
         return account;

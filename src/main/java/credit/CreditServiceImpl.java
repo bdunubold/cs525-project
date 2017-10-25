@@ -9,6 +9,7 @@ import framework.AccountService;
 import framework.Address;
 import framework.Customer;
 import framework.DataMap;
+import framework.Individual;
 
 public class CreditServiceImpl extends AccountService {
 
@@ -21,7 +22,7 @@ public class CreditServiceImpl extends AccountService {
 
 		Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
 
-		Account account = new Account(data.getCardNumber());
+		Account account = new Individual(data.getCardNumber());
 
 		account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
 
