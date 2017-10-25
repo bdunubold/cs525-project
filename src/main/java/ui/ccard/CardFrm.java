@@ -23,6 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import credit.CreditDAOImpl;
+import credit.CreditServiceImpl;
 
 /**
  * A basic JFC based application.
@@ -40,7 +41,7 @@ public class CardFrm extends javax.swing.JFrame {
 	CardFrm thisframe;
 	private Object rowdata[];
 
-	private AccountService accountService;
+	private AccountService accountService = new CreditServiceImpl();
 
 	private CommandInvoker commandInvoker;
 
@@ -168,7 +169,7 @@ public class CardFrm extends javax.swing.JFrame {
 			rowInfo[1] = account.getAccountNumber();
 			rowInfo[2] = LocalDate.now().plusYears(2).toString();
 			rowInfo[3] = account.getType().toString();
-			rowInfo[4] = account.getBalance();
+			rowInfo[4] = String.valueOf(account.getBalance());
 			rowInfo[5] = "";
 			rowInfo[6] = "";
 			model.addRow(rowInfo);
@@ -338,7 +339,7 @@ public class CardFrm extends javax.swing.JFrame {
 			}
 
 			String samount = (String) model.getValueAt(selection, 4);
-			double currentamount = Long.parseLong(samount);
+			double currentamount = Double.parseDouble(samount);
 			double newamount = currentamount - withdraw;
 
 			if (newamount < 0) {
