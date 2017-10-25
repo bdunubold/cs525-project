@@ -1,4 +1,4 @@
-package bank.command;
+package framework.command.impl;
 
 import framework.AccountService;
 import framework.command.Command;

@@ -1,4 +1,4 @@
-package bank.command;
+package framework.command.impl;
 
 import framework.AccountService;
 import framework.command.Command;
@@ -18,6 +18,6 @@ accountService.addInterest();
 
     @Override
     public void undo() {
-
+        throw new UnsupportedOperationException("undoing addInterst is forbidden!");
     }
 }

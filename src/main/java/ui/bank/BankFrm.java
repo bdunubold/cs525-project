@@ -1,14 +1,16 @@
 package ui.bank;
 
-import bank.BankServiceImpl;
-import bank.command.*;
 import framework.AccounTypeEnum;
 import framework.AccountService;
 import framework.ClientType;
 import framework.DataMap;
 import framework.command.Command;
 import framework.command.CommandInvoker;
-import ui.bank.rule.RuleSetFactory;
+import framework.command.impl.AccountCreationCommand;
+import framework.command.impl.AddInterstCommand;
+import framework.command.impl.DepositCommand;
+import framework.command.impl.WithdrawCommand;
+import framework.rule.RuleSetFactory;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -227,6 +229,9 @@ public class BankFrm extends JFrame{
 
     private void addPersonalAccount() {
         // parameters checking
+        if (accountType == null) {
+            throw new IllegalArgumentException("accountType can not be null!");
+        }
         DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
                 accountnr, clientName, street, city, state, zip, email, null, framework.ClientType.INDIVIDUAL);
 
@@ -234,7 +239,7 @@ public class BankFrm extends JFrame{
 
         dataMap.setBirthday(birthDate);
 
-        PersonalAccountCreationCommand pcCommand = new PersonalAccountCreationCommand(accountService, dataMap);
+        AccountCreationCommand pcCommand = new AccountCreationCommand(accountService, dataMap);
         commandInvoker.execute(pcCommand);
     }
 
@@ -267,6 +272,9 @@ public class BankFrm extends JFrame{
 
     private void addCompanyAccount() {
         // \ parameters validation
+        if (accountType == null) {
+            throw new IllegalArgumentException("accountType can not be null!");
+        }
 
         DataMap dataMap = new DataMap("Ch".equals(accountType) ? AccounTypeEnum.CHECKING : AccounTypeEnum.SAVING,
                 accountnr, clientName, street, city, state, zip, email, Integer.parseInt(noOfEmployee), ClientType
@@ -274,7 +282,7 @@ public class BankFrm extends JFrame{
 
         RuleSetFactory.getRuleSet().validate(dataMap);
 
-        CompanyAccountCreationCommand cCommand = new CompanyAccountCreationCommand(accountService, dataMap);
+        AccountCreationCommand cCommand = new AccountCreationCommand(accountService, dataMap);
 
         commandInvoker.execute(cCommand);
     }

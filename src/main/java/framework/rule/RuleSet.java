@@ -1,4 +1,4 @@
-package ui.bank.rule;
+package framework.rule;
 
 import framework.DataMap;
 

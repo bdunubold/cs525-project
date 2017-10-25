@@ -1,22 +1,22 @@
-package bank.command;
+package framework.command.impl;
 
 import framework.AccountService;
 import framework.DataMap;
 import framework.command.Command;
 
-public class PersonalAccountCreationCommand implements Command{
+public class AccountCreationCommand implements Command{
 
     private AccountService accountService;
-    private DataMap personalAccount;
+    private DataMap dataMap;
 
-    public PersonalAccountCreationCommand(AccountService accountService, DataMap personalAccount) {
+    public AccountCreationCommand(AccountService accountService, DataMap dataMap) {
         this.accountService = accountService;
-        this.personalAccount = personalAccount;
+        this.dataMap = dataMap;
     }
 
     @Override
     public void execute() {
-        accountService.createAccount(personalAccount);
+        accountService.createAccount(dataMap);
     }
 
     @Override

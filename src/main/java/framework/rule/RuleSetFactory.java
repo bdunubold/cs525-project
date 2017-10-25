@@ -1,4 +1,4 @@
-package ui.bank.rule;
+package framework.rule;
 
 public class RuleSetFactory{
     public static RuleSet getRuleSet() {

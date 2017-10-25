@@ -4,17 +4,17 @@ import java.time.LocalDate;
 
 public class DataMap {
 	private AccounTypeEnum accounTypeEnum;
-	private AccountType accounType;
+//	private AccountType accounType;
     private String accountNumber;
     private String name;
-    private String customerType;
-    public String getCustomerType() {
-		return customerType;
-	}
-
-	public void setCustomerType(String customerType) {
-		this.customerType = customerType;
-	}
+//    private String customerType;
+//    public String getCustomerType() {
+//		return customerType;
+//	}
+//
+//	public void setCustomerType(String customerType) {
+//		this.customerType = customerType;
+//	}
 
 	private String street;
     private String city;
@@ -24,7 +24,7 @@ public class DataMap {
     private String email;
     private Integer numOfEmployees;
     private String cardNumber;
- /*   private LocalDate cardExpirationDate;*/
+    private String cardExpirationDate;
 
     private ClientType clientType;
 
@@ -134,6 +134,14 @@ public class DataMap {
         this.clientType = clientType;
     }
 
+    public String getCardExpirationDate() {
+        return cardExpirationDate;
+    }
+
+    public void setCardExpirationDate(String cardExpirationDate) {
+        this.cardExpirationDate = cardExpirationDate;
+    }
+
     @Override
     public String toString() {
         return "DataMap{" + "accounType=" + accounTypeEnum + ", accountNumber='" + accountNumber + '\'' + ", name='" +
@@ -149,14 +157,14 @@ public class DataMap {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-
-	public AccountType getAccounType() {
-		return accounType;
-	}
-
-	public void setAccounType(AccountType accounType) {
-		this.accounType = accounType;
-	}
+//
+//	public AccountType getAccounType() {
+//		return accounType;
+//	}
+//
+//	public void setAccounType(AccountType accounType) {
+//		this.accounType = accounType;
+//	}
 
 	/*public LocalDate getCardExpirationDate() {
 		return cardExpirationDate;
