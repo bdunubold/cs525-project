@@ -12,6 +12,11 @@ public class Silver implements CreditAccountType, Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "Silver";
+	}
+
+	@Override
 	public double accept(Visitor visitor, double amount) {
 		return visitor.visit(this, amount);
 	}

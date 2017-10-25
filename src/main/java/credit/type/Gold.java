@@ -12,6 +12,11 @@ public class Gold implements CreditAccountType, Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "Gold";
+	}
+
+	@Override
 	public double accept(Visitor visitor, double amount) {
 		return visitor.visit(this, amount);
 	}
