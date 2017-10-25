@@ -1,14 +1,17 @@
 package framework;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class AccountEntry {
+public class AccountEntry implements Serializable {
+
+	private static final long serialVersionUID = 2904780109428472810L;
 	private LocalDate date;
 	private double amount;
 	private String description;
 	private String fromAccountNumber;
 	private String fromPersonName;
-	
+
 	public AccountEntry() {
 	}
 
@@ -60,5 +63,5 @@ public class AccountEntry {
 	public void setFromPersonName(String fromPersonName) {
 		this.fromPersonName = fromPersonName;
 	}
-	
+
 }
