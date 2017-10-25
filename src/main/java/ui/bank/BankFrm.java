@@ -1,5 +1,7 @@
 package ui.bank;
 
+import bank.BankDAOImpl;
+import bank.BankServiceImpl;
 import framework.AccounTypeEnum;
 import framework.AccountService;
 import framework.ClientType;
@@ -33,7 +35,7 @@ public class BankFrm extends JFrame{
     private JScrollPane JScrollPane1;
     private BankFrm myframe;
     private Object rowdata[];
-    private AccountService accountService;
+    private AccountService accountService = new BankServiceImpl(BankDAOImpl.getInstance());
 
     private CommandInvoker commandInvoker = new CommandInvoker();
 
@@ -238,6 +240,8 @@ public class BankFrm extends JFrame{
         RuleSetFactory.getRuleSet().validate(dataMap);
 
         dataMap.setBirthday(birthDate);
+        dataMap.setClientType(ClientType.INDIVIDUAL);
+
 
         AccountCreationCommand pcCommand = new AccountCreationCommand(accountService, dataMap);
         commandInvoker.execute(pcCommand);
@@ -281,6 +285,7 @@ public class BankFrm extends JFrame{
                 .COMPANY);
 
         RuleSetFactory.getRuleSet().validate(dataMap);
+        dataMap.setClientType(ClientType.COMPANY);
 
         AccountCreationCommand cCommand = new AccountCreationCommand(accountService, dataMap);
 
@@ -308,6 +313,7 @@ public class BankFrm extends JFrame{
             }
 
             Command dCommand = new DepositCommand(accountService, accnr, deposit);
+            System.out.println("****deposit: " + deposit);
             commandInvoker.execute(dCommand);
 
             String samount = (String)model.getValueAt(selection, 5);
@@ -340,7 +346,7 @@ public class BankFrm extends JFrame{
                 throw new IllegalArgumentException(e);
             }
             String samount = (String)model.getValueAt(selection, 5);
-            double currentamount = Long.parseLong(samount);
+            double currentamount = Float.parseFloat(samount);
             double newamount = currentamount - withdraw;
             if (newamount < 0) {
                 JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" +

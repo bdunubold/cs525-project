@@ -1,8 +1,6 @@
 package bank;
 
 import framework.*;
-import java.util.UUID;
-import java.util.Collection;
 
 public class BankServiceImpl extends AccountService {
 
@@ -14,7 +12,11 @@ public class BankServiceImpl extends AccountService {
 	@Override
 	public Account createAccount(DataMap data) {
         Address address = new Address(data.getState(), data.getCity(), data.getState(), data.getZip());
-        Account account = new Individual(UUID.randomUUID().toString().replace("-", ""));
+        Account account;
+        if(data.getClientType() == ClientType.INDIVIDUAL)
+            account = new Individual(data.getAccountNumber());
+        else
+            account = new CompanyAccount(data.getAccountNumber());
         account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
         BankDAOImpl.getInstance().saveAccount(account);
 

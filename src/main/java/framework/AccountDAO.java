@@ -18,6 +18,8 @@ public abstract class AccountDAO {
 			accountlist.add(account); // add the new
 		}
 
+		accountlist.forEach(e -> System.out.println("for each e.getBalance(): " + e.getBalance()));
+
 	}
 
 	public Account loadAccount(String accountNumber) {

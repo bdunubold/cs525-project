@@ -21,7 +21,7 @@ public abstract class AccountService implements Observable {
 	public void deposit(String accountNumber, double amount) {
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.deposit(amount);
-
+		System.out.println("account.deposit" + account.getBalance());
 		accountDAO.updateAccount(account);
 	}
 

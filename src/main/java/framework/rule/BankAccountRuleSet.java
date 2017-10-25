@@ -31,11 +31,11 @@ public class BankAccountRuleSet implements RuleSet{
         }
 
         if (dataMap.getState() == null || dataMap.getState().trim().equals("")) {
-            throw new IllegalArgumentException("street can not be empty!");
+            throw new IllegalArgumentException("State can not be empty!");
         }
 
-        if (isNumric(dataMap.getZip())) {
-            throw new IllegalArgumentException("street can not be empty!");
+        if (!isNumric(dataMap.getZip())) {
+            throw new IllegalArgumentException("Zip has to be number.");
         }
 
         if (!(Pattern.compile(".*@.*\\.com").matcher(dataMap.getEmail()).matches())) {
