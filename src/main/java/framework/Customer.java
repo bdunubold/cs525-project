@@ -1,6 +1,10 @@
 package framework;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = 6110690276685962829L;
 	private String name;
 	private String email;
 	private Address address;

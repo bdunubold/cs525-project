@@ -1,10 +1,13 @@
 package credit.interest;
 
+import java.io.Serializable;
+
 import credit.type.CreditAccountType;
 import framework.InterestStrategy;
 
-public class MonthlyInterest implements InterestStrategy {
+public class MonthlyInterest implements InterestStrategy, Serializable {
 
+	private static final long serialVersionUID = 1241249185939102432L;
 	private CreditAccountType creditType;
 
 	public MonthlyInterest(CreditAccountType creditType) {

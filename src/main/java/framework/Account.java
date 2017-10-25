@@ -1,15 +1,18 @@
 package framework;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class Account {
-	
+public abstract class Account implements Serializable {
+
+	private static final long serialVersionUID = 7508481940058530471L;
+
 	private AccountType type;
 
 	private InterestStrategy interest;
-	
+
 	private Customer customer;
 
 	private String accountNumber;
@@ -55,9 +58,9 @@ public abstract class Account {
 				toAccount.getCustomer().getName());
 		AccountEntry toEntry = new AccountEntry(amount, description, toAccount.getAccountNumber(),
 				toAccount.getCustomer().getName());
-		
+
 		entryList.add(fromEntry);
-		
+
 		toAccount.addEntry(toEntry);
 	}
 
@@ -72,12 +75,11 @@ public abstract class Account {
 	public Collection<AccountEntry> getEntryList() {
 		return entryList;
 	}
-		
-	public void addInterest () {
+
+	public void addInterest() {
 		deposit(interest.calcInterest(getBalance()));
 	}
-	
-	
+
 	public AccountType getType() {
 		return type;
 	}

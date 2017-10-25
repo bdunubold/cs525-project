@@ -1,11 +1,20 @@
 package credit.type;
 
+import java.io.Serializable;
+
 import credit.Visitor;
 
-public class Bronze implements CreditAccountType {
+public class Bronze implements CreditAccountType, Serializable {
+
+	private static final long serialVersionUID = -8864342786735722728L;
 
 	public Bronze() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Bronze";
 	}
 
 	@Override

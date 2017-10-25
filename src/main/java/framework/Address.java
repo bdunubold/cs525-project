@@ -1,6 +1,10 @@
 package framework;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
+
+	private static final long serialVersionUID = 7945646009486946288L;
 	private String city;
 	private String state;
 	private String street;
@@ -44,7 +48,7 @@ public class Address {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getCity() + " " + getState();
