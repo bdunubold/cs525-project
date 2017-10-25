@@ -17,6 +17,17 @@ public class BankServiceImpl extends AccountService {
         Account account = new Account(UUID.randomUUID().toString().replace("-", ""));
         account.setCustomer(new Customer(data.getName(), data.getEmail(), address));
         BankDAOImpl.getInstance().saveAccount(account);
+
+        switch (data.getAccounTypeEnum()){
+            case SAVING:
+//                SavingAccountType().setStrategy(account)
+                account.setType(new SavingAccountType());
+            case CHECKING:
+//                CheckingAccountType().setStrategy(account)
+                account.setType(new CheckingAccountType());
+            default:
+                account.setType(null);
+        }
         return account;
 	}
 
