@@ -271,6 +271,7 @@ public class CardFrm extends javax.swing.JFrame{
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
         if (selection >= 0) {
             String name = (String)model.getValueAt(selection, 0);
+            String creditAccountNo = (String)model.getValueAt(selection, 1);
 
             //Show the dialog for adding deposit amount for the current mane
             JDialog_Deposit dep = new JDialog_Deposit(thisframe, name);
@@ -286,7 +287,7 @@ public class CardFrm extends javax.swing.JFrame{
                 throw new IllegalArgumentException(e);
             }
             //TODO does credit account have accountNo?
-            Command dCommand = new DepositCommand(accountService, name, deposit);
+            Command dCommand = new DepositCommand(accountService, creditAccountNo, deposit);
             commandInvoker.execute(dCommand);
 
             String samount = (String)model.getValueAt(selection, 4);
@@ -303,6 +304,7 @@ public class CardFrm extends javax.swing.JFrame{
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
         if (selection >= 0) {
             String name = (String)model.getValueAt(selection, 0);
+            String creditAccountNo = (String)model.getValueAt(selection, 1);
 
             //Show the dialog for adding withdraw amount for the current mane
             JDialog_Withdraw wd = new JDialog_Withdraw(thisframe, name);
@@ -328,13 +330,11 @@ public class CardFrm extends javax.swing.JFrame{
                         .valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
             }
 
-            Command wCommand = new WithdrawCommand(accountService, name, withdraw);
+            Command wCommand = new WithdrawCommand(accountService, creditAccountNo, withdraw);
             commandInvoker.execute(wCommand);
 
             model.setValueAt(String.valueOf(newamount), selection, 4);
         }
-
-
     }
 
 }
